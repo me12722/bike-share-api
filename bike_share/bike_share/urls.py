@@ -13,10 +13,11 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.contrib import admin
 from rest_framework_nested import routers
 from authentication.views import AccountViewSet
+from authentication.views import LoginView
 
 router = routers.SimpleRouter()
 router.register(r'accounts', AccountViewSet)
@@ -24,4 +25,5 @@ router.register(r'accounts', AccountViewSet)
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^api/v1/', include(router.urls)),
+    url(r'^api/v1/auth/login/$', LoginView.as_view(), name='login'),
 ]

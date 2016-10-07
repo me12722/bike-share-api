@@ -32,11 +32,11 @@ class LoginView(views.APIView):
                         'status': 'Unauthorized',
                         'message': 'This account has been disabled'
                 }, status=status.HTTP_401_UNAUTHORIZED)
-            else:
-                return Response({
-                        'status' : 'Unauthorized',
-                        'message' : 'username/password combination invalid'
-                }, status=status.HTTP_401_UNAUTHORIZED)
+        else:
+            return Response({
+                    'status' : 'Unauthorized',
+                    'message' : 'username/password combination invalid'
+            }, status=status.HTTP_401_UNAUTHORIZED)
 
 
 class AccountViewSet(viewsets.ModelViewSet):
